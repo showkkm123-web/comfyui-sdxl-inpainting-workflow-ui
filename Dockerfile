@@ -6,5 +6,3 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends && rm -rf 
 
 COPY download_model.sh /download_model.sh
 RUN chmod +x /download_model.sh && /download_model.sh
-
-CMD ["python", "-u", "/start.py"]
