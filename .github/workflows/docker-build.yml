@@ -25,4 +25,4 @@ jobs:
           push: true
           tags: |
             catchdom/comfyui-sdxl-inpainting:latest
-            catchdom/comfyui-sdxl-inpainting:v3
+            catchdom/comfyui-sdxl-inpainting:v4
