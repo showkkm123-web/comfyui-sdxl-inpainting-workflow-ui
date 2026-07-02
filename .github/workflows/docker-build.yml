@@ -23,4 +23,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: showkkm123/comfyui-sdxl-inpainting:latest
+          tags: catchdom/comfyui-sdxl-inpainting:latest
