@@ -5,7 +5,5 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends && rm -rf 
 COPY download_model.sh /download_model.sh
 RUN chmod +x /download_model.sh
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+# /start.sh 앞에 모델 다운로드 삽입
+RUN sed -i '1a /download_model.sh' /start.sh
