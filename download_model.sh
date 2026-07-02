@@ -7,13 +7,16 @@ MODEL_URL="https://huggingface.co/diffusers/stable-diffusion-xl-1.0-inpainting-0
 if [ ! -f "$MODEL_PATH" ]; then
     echo "모델 다운로드 중..."
     mkdir -p /comfyui/models/checkpoints
-    curl -fL --progress-bar -o "$MODEL_PATH" "$MODEL_URL"
-    SIZE=$(stat -c%s "$MODEL_PATH")
-    echo "다운로드 완료: ${SIZE} bytes"
-    if [ "$SIZE" -lt 1000000 ]; then
-        echo "ERROR: 모델 파일이 너무 작음 (다운로드 실패)"
-        exit 1
-    fi
+    python3 -c "
+import urllib.request, sys
+print('Downloading SDXL inpainting model...')
+urllib.request.urlretrieve('$MODEL_URL', '$MODEL_PATH')
+import os
+size = os.path.getsize('$MODEL_PATH')
+print(f'Downloaded: {size} bytes')
+assert size > 1000000, f'File too small: {size}'
+"
+    echo "완료"
 else
     echo "모델 이미 존재함, 스킵"
 fi
